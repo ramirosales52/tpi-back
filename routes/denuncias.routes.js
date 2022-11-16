@@ -49,13 +49,31 @@ route.get('/', (req, res) => {
 })
 
 
+route.get('/:email', (req, res) => {
+    let result = getDenunciasByEmail(req.params.email)
+    result.then(value => {
+        res.json({
+            value: value
+        })
+    }) .catch(err =>{
+        res.status(400).json({
+            error: err
+        })
+    })
+})
+
+
 
 async function crearDenuncia(body){
     let denuncia = new Denuncia({
         nombre              : body.nombre,
-        email               : body.email,
+        apellido            : body.apellido,
         localidad           : body.localidad,
+        email               : body.email,
+        nombredenunciado    : body.nombredenunciado,
+        apellidodenunciado  : body.apellidodenunciado,
         tipoinfraccion      : body.tipoinfraccion,
+        motivo              : body.motivo
     })
 
     return await denuncia.save() 
@@ -67,6 +85,10 @@ async function consultarDenuncias(){
     return denuncias
 }
 
+async function getDenunciasByEmail(email){
+    let denunciasbyemail = await Denuncia.find({"email": email})
+    return denunciasbyemail
+}
 
 
 

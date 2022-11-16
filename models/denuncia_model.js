@@ -3,15 +3,35 @@ const mongoose = require('mongoose')
 const denunciasSchema = new mongoose.Schema({
     nombre: {
         type: String,
-        required: true
+        require: true
+    },
+    apellido: {
+        type: String,
+        require: true
     },
     localidad: {
         type: String,
-        required: true
+        require: true
+    },
+    email: {
+        type: String,
+        require: true
+    },
+    nombredenunciado: {
+        type: String,
+        require: true
+    }, 
+    apellidodenunciado: {
+        type: String,
+        require: true
     },
     tipoinfraccion: {
         type: String,
-        required: true
+        require: true
+    },
+    motivo: {
+        type: String,
+        require: true
     }
 })
 
